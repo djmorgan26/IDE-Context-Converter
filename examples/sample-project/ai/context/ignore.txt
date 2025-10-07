@@ -1,0 +1,8 @@
+# Ignore patterns (glob-like)
+# Add file patterns that should be excluded from AI context
+
+node_modules/
+dist/
+build/
+*.log
+.env
