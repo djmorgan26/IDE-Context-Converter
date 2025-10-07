@@ -83,6 +83,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools wheel build twine
 
+      - name: Install package
+        run: pip install -e .
+
       - name: Build package
         run: python -m build --sdist --wheel --outdir dist
 
