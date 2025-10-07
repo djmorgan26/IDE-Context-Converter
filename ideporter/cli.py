@@ -82,8 +82,7 @@ def init(
 
     if canonical.exists() and not dry_run:
         console.print(
-            f"[yellow]⊘[/yellow] Canonical context already exists at "
-            f"{canonical.context_dir}"
+            f"[yellow]⊘[/yellow] Canonical context already exists at " f"{canonical.context_dir}"
         )
         console.print("[dim]Existing files will be preserved[/dim]")
 
@@ -95,9 +94,7 @@ def init(
         )
         console.print("\n[bold]Next steps:[/bold]")
         console.print("  1. Edit ai/context/rules.md with your AI instructions")
-        console.print(
-            "  2. Run 'ide-context-porter export --to <ide>' to sync to your IDE"
-        )
+        console.print("  2. Run 'ide-context-porter export --to <ide>' to sync to your IDE")
 
 
 @app.command(name="import")
@@ -108,9 +105,7 @@ def import_context(
     path: Path | None = typer.Option(
         None, "--path", help="Path to project (defaults to current directory)"
     ),
-    force: bool = typer.Option(
-        False, "--force", help="Overwrite existing files without backup"
-    ),
+    force: bool = typer.Option(False, "--force", help="Overwrite existing files without backup"),
     dry_run: bool = typer.Option(
         False, "--dry-run", help="Preview operations without making changes"
     ),
@@ -131,9 +126,7 @@ def import_context(
     # Initialize canonical context if it doesn't exist
     canonical = CanonicalContext(project_path)
     if not canonical.exists():
-        console.print(
-            "[yellow]⊘[/yellow] Canonical context not found, initializing..."
-        )
+        console.print("[yellow]⊘[/yellow] Canonical context not found, initializing...")
         canonical.initialize(dry_run=dry_run)
 
     # Run import
@@ -157,9 +150,7 @@ def export_context(
     path: Path | None = typer.Option(
         None, "--path", help="Path to project (defaults to current directory)"
     ),
-    force: bool = typer.Option(
-        False, "--force", help="Overwrite existing files without backup"
-    ),
+    force: bool = typer.Option(False, "--force", help="Overwrite existing files without backup"),
     dry_run: bool = typer.Option(
         False, "--dry-run", help="Preview operations without making changes"
     ),
@@ -180,9 +171,7 @@ def export_context(
     # Check canonical context exists
     canonical = CanonicalContext(project_path)
     if not canonical.exists():
-        console.print(
-            f"[red]✗[/red] Canonical context not found at {canonical.context_dir}"
-        )
+        console.print(f"[red]✗[/red] Canonical context not found at {canonical.context_dir}")
         console.print("[dim]Run 'ide-context-porter init' first[/dim]")
         raise typer.Exit(1)
 
@@ -214,9 +203,7 @@ def convert(
     path: Path | None = typer.Option(
         None, "--path", help="Path to project (defaults to current directory)"
     ),
-    force: bool = typer.Option(
-        False, "--force", help="Overwrite existing files without backup"
-    ),
+    force: bool = typer.Option(False, "--force", help="Overwrite existing files without backup"),
     dry_run: bool = typer.Option(
         False, "--dry-run", help="Preview operations without making changes"
     ),
@@ -263,9 +250,7 @@ def convert(
     if not dry_run:
         canonical.update_manifest(to_ide, dry_run=dry_run, force=force)
 
-    console.print(
-        f"\n[green]✓[/green] Conversion complete: {from_ide.upper()} → {to_ide.upper()}"
-    )
+    console.print(f"\n[green]✓[/green] Conversion complete: {from_ide.upper()} → {to_ide.upper()}")
 
 
 @app.command()

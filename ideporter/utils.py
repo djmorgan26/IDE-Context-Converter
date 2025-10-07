@@ -31,9 +31,7 @@ def create_backup(file_path: Path) -> Path:
     return backup_path
 
 
-def safe_write(
-    file_path: Path, content: str, force: bool = False, dry_run: bool = False
-) -> None:
+def safe_write(file_path: Path, content: str, force: bool = False, dry_run: bool = False) -> None:
     """Safely write content to a file with backup and dry-run support.
 
     Args:
@@ -179,9 +177,7 @@ def ensure_directory(path: Path, dry_run: bool = False) -> None:
     """
     if dry_run:
         if not path.exists():
-            console.print(
-                f"[yellow]DRY RUN:[/yellow] Would create directory {path}"
-            )
+            console.print(f"[yellow]DRY RUN:[/yellow] Would create directory {path}")
         return
 
     path.mkdir(parents=True, exist_ok=True)

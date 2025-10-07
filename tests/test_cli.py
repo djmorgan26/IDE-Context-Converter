@@ -41,14 +41,15 @@ def test_detect_command_json(temp_project):
     except json.JSONDecodeError:
         # If direct parsing fails, try cleaning the output
         import re
+
         # Remove ANSI escape codes
-        clean_output = re.sub(r'\x1b\[[0-9;]*m', '', result.stdout)
+        clean_output = re.sub(r"\x1b\[[0-9;]*m", "", result.stdout)
         # Remove box drawing and other unicode control chars
-        clean_output = re.sub(r'[\u2500-\u257F]', '', clean_output)
+        clean_output = re.sub(r"[\u2500-\u257F]", "", clean_output)
         # Remove other control characters except newlines and tabs
-        clean_output = re.sub(r'[\x00-\x08\x0b-\x0c\x0e-\x1f\x7f-\x9f]', '', clean_output)
+        clean_output = re.sub(r"[\x00-\x08\x0b-\x0c\x0e-\x1f\x7f-\x9f]", "", clean_output)
         # Try to extract just the JSON object
-        json_match = re.search(r'\{.*\}', clean_output, re.DOTALL)
+        json_match = re.search(r"\{.*\}", clean_output, re.DOTALL)
         if json_match:
             clean_output = json_match.group(0)
         output = json.loads(clean_output)
@@ -84,9 +85,7 @@ def test_import_command(temp_project):
     # Create Cursor files
     (temp_project / ".cursorrules").write_text("# Test Rules")
 
-    result = runner.invoke(
-        app, ["import", "--from", "cursor", "--path", str(temp_project)]
-    )
+    result = runner.invoke(app, ["import", "--from", "cursor", "--path", str(temp_project)])
     assert result.exit_code == 0
 
     # Check canonical was created
@@ -96,9 +95,7 @@ def test_import_command(temp_project):
 
 def test_import_command_invalid_ide(temp_project):
     """Test import command with invalid IDE."""
-    result = runner.invoke(
-        app, ["import", "--from", "invalid", "--path", str(temp_project)]
-    )
+    result = runner.invoke(app, ["import", "--from", "invalid", "--path", str(temp_project)])
     assert result.exit_code == 1
     assert "Unknown adapter" in result.stdout
 
@@ -111,9 +108,7 @@ def test_export_command(temp_project):
     (canonical_dir / "rules.md").write_text("# Test Rules")
     (canonical_dir / "manifest.yaml").write_text("version: '1.0'")
 
-    result = runner.invoke(
-        app, ["export", "--to", "cursor", "--path", str(temp_project)]
-    )
+    result = runner.invoke(app, ["export", "--to", "cursor", "--path", str(temp_project)])
     assert result.exit_code == 0
 
     # Check Cursor files were created
@@ -122,9 +117,7 @@ def test_export_command(temp_project):
 
 def test_export_command_no_canonical(temp_project):
     """Test export command without canonical context."""
-    result = runner.invoke(
-        app, ["export", "--to", "cursor", "--path", str(temp_project)]
-    )
+    result = runner.invoke(app, ["export", "--to", "cursor", "--path", str(temp_project)])
     assert result.exit_code == 1
     assert "not found" in result.stdout
 
@@ -196,10 +189,11 @@ def test_validate_command_json(temp_project):
 
     # Strip any ANSI codes and control characters, then parse JSON
     import re
+
     # Remove ANSI escape codes
-    clean_output = re.sub(r'\x1b\[[0-9;]*m', '', result.stdout)
+    clean_output = re.sub(r"\x1b\[[0-9;]*m", "", result.stdout)
     # Remove other control characters except newlines and tabs
-    clean_output = re.sub(r'[\x00-\x08\x0b-\x0c\x0e-\x1f\x7f-\x9f]', '', clean_output)
+    clean_output = re.sub(r"[\x00-\x08\x0b-\x0c\x0e-\x1f\x7f-\x9f]", "", clean_output)
     # Strip whitespace
     clean_output = clean_output.strip()
 
@@ -229,9 +223,7 @@ def test_force_flag(temp_project):
     (canonical_dir / "manifest.yaml").write_text("version: '1.0'")
 
     # Export to cursor
-    runner.invoke(
-        app, ["export", "--to", "cursor", "--path", str(temp_project)]
-    )
+    runner.invoke(app, ["export", "--to", "cursor", "--path", str(temp_project)])
 
     # Modify and re-export with force
     (canonical_dir / "rules.md").write_text("# Modified Rules")
