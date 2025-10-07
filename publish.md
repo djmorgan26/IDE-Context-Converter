@@ -94,7 +94,7 @@ You can create a shell alias for quick, one-command publishing:
 
 Bash
 
-alias publish="python scripts/publish.py"
+alias publish="scripts/publish.sh"
 Then, you can simply run:
 
 Bash
