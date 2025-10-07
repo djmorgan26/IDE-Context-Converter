@@ -1,7 +1,5 @@
 """Tests for canonical context management."""
 
-
-
 from ideporter.canonical import CanonicalContext
 
 

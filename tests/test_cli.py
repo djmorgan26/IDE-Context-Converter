@@ -29,7 +29,9 @@ def test_detect_command(temp_project):
 
 def test_detect_command_json(temp_project):
     """Test detect command with JSON output."""
-    result = runner.invoke(app, ["detect", str(temp_project), "--json"], env={"NO_COLOR": "1", "TERM": "dumb"})
+    result = runner.invoke(
+        app, ["detect", str(temp_project), "--json"], env={"NO_COLOR": "1", "TERM": "dumb"}
+    )
     assert result.exit_code == 0
 
     # The output should be valid JSON - parse it directly
@@ -170,7 +172,9 @@ def test_validate_command_json(temp_project):
     (canonical_dir / "rules.md").write_text("# Test Rules")
     (canonical_dir / "manifest.yaml").write_text("version: '1.0'")
 
-    result = runner.invoke(app, ["validate", str(temp_project), "--json"], env={"NO_COLOR": "1", "TERM": "dumb"})
+    result = runner.invoke(
+        app, ["validate", str(temp_project), "--json"], env={"NO_COLOR": "1", "TERM": "dumb"}
+    )
     assert result.exit_code == 0
 
     # Strip any ANSI codes and control characters, then parse JSON
@@ -212,7 +216,9 @@ def test_force_flag(temp_project):
 
     # Modify and re-export with force
     (canonical_dir / "rules.md").write_text("# Modified Rules")
-    result = runner.invoke(app, ["export", "--to", "cursor", "--path", str(temp_project), "--force"])
+    result = runner.invoke(
+        app, ["export", "--to", "cursor", "--path", str(temp_project), "--force"]
+    )
 
     assert result.exit_code == 0
 

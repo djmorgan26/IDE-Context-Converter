@@ -25,7 +25,9 @@ class BaseAdapter(ABC):
         pass
 
     @abstractmethod
-    def import_context(self, canonical_dir: Path, force: bool = False, dry_run: bool = False) -> None:
+    def import_context(
+        self, canonical_dir: Path, force: bool = False, dry_run: bool = False
+    ) -> None:
         """Import context from IDE-specific files to canonical format.
 
         Args:
@@ -36,7 +38,9 @@ class BaseAdapter(ABC):
         pass
 
     @abstractmethod
-    def export_context(self, canonical_dir: Path, force: bool = False, dry_run: bool = False) -> None:
+    def export_context(
+        self, canonical_dir: Path, force: bool = False, dry_run: bool = False
+    ) -> None:
         """Export context from canonical format to IDE-specific files.
 
         Args:

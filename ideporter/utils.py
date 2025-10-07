@@ -91,7 +91,9 @@ def load_yaml(file_path: Path) -> dict[str, Any]:
     return yaml.safe_load(content) or {}
 
 
-def save_yaml(file_path: Path, data: dict[str, Any], force: bool = False, dry_run: bool = False) -> None:
+def save_yaml(
+    file_path: Path, data: dict[str, Any], force: bool = False, dry_run: bool = False
+) -> None:
     """Save data to a YAML file.
 
     Args:

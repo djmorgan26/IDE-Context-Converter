@@ -67,7 +67,9 @@ def init(
     path: Path | None = typer.Argument(
         None, help="Path to project (defaults to current directory)"
     ),
-    dry_run: bool = typer.Option(False, "--dry-run", help="Preview operations without making changes"),
+    dry_run: bool = typer.Option(
+        False, "--dry-run", help="Preview operations without making changes"
+    ),
 ) -> None:
     """Initialize the canonical ai/context/ structure with starter templates."""
     project_path = path or Path.cwd()
@@ -95,10 +97,18 @@ def init(
 
 @app.command(name="import")
 def import_context(
-    from_ide: str = typer.Option(..., "--from", help="Source IDE (cursor, vscode, continue, claude, windsurf)"),
-    path: Path | None = typer.Option(None, "--path", help="Path to project (defaults to current directory)"),
-    force: bool = typer.Option(False, "--force", help="Overwrite existing files without backup"),
-    dry_run: bool = typer.Option(False, "--dry-run", help="Preview operations without making changes"),
+    from_ide: str = typer.Option(
+        ..., "--from", help="Source IDE (cursor, vscode, continue, claude, windsurf)"
+    ),
+    path: Path | None = typer.Option(
+        None, "--path", help="Path to project (defaults to current directory)"
+    ),
+    force: bool = typer.Option(
+        False, "--force", help="Overwrite existing files without backup"
+    ),
+    dry_run: bool = typer.Option(
+        False, "--dry-run", help="Preview operations without making changes"
+    ),
 ) -> None:
     """Import context from IDE-specific files to canonical format."""
     project_path = path or Path.cwd()
@@ -134,10 +144,18 @@ def import_context(
 
 @app.command(name="export")
 def export_context(
-    to_ide: str = typer.Option(..., "--to", help="Target IDE (cursor, vscode, continue, claude, windsurf)"),
-    path: Path | None = typer.Option(None, "--path", help="Path to project (defaults to current directory)"),
-    force: bool = typer.Option(False, "--force", help="Overwrite existing files without backup"),
-    dry_run: bool = typer.Option(False, "--dry-run", help="Preview operations without making changes"),
+    to_ide: str = typer.Option(
+        ..., "--to", help="Target IDE (cursor, vscode, continue, claude, windsurf)"
+    ),
+    path: Path | None = typer.Option(
+        None, "--path", help="Path to project (defaults to current directory)"
+    ),
+    force: bool = typer.Option(
+        False, "--force", help="Overwrite existing files without backup"
+    ),
+    dry_run: bool = typer.Option(
+        False, "--dry-run", help="Preview operations without making changes"
+    ),
 ) -> None:
     """Export context from canonical format to IDE-specific files."""
     project_path = path or Path.cwd()
@@ -184,9 +202,15 @@ def export_context(
 def convert(
     from_ide: str = typer.Option(..., "--from", help="Source IDE"),
     to_ide: str = typer.Option(..., "--to", help="Target IDE"),
-    path: Path | None = typer.Option(None, "--path", help="Path to project (defaults to current directory)"),
-    force: bool = typer.Option(False, "--force", help="Overwrite existing files without backup"),
-    dry_run: bool = typer.Option(False, "--dry-run", help="Preview operations without making changes"),
+    path: Path | None = typer.Option(
+        None, "--path", help="Path to project (defaults to current directory)"
+    ),
+    force: bool = typer.Option(
+        False, "--force", help="Overwrite existing files without backup"
+    ),
+    dry_run: bool = typer.Option(
+        False, "--dry-run", help="Preview operations without making changes"
+    ),
 ) -> None:
     """Convert context from one IDE format to another (import → export in one step)."""
     project_path = path or Path.cwd()
