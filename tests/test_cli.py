@@ -84,7 +84,9 @@ def test_import_command(temp_project):
     # Create Cursor files
     (temp_project / ".cursorrules").write_text("# Test Rules")
 
-    result = runner.invoke(app, ["import", "--from", "cursor", "--path", str(temp_project)])
+    result = runner.invoke(
+        app, ["import", "--from", "cursor", "--path", str(temp_project)]
+    )
     assert result.exit_code == 0
 
     # Check canonical was created
@@ -94,7 +96,9 @@ def test_import_command(temp_project):
 
 def test_import_command_invalid_ide(temp_project):
     """Test import command with invalid IDE."""
-    result = runner.invoke(app, ["import", "--from", "invalid", "--path", str(temp_project)])
+    result = runner.invoke(
+        app, ["import", "--from", "invalid", "--path", str(temp_project)]
+    )
     assert result.exit_code == 1
     assert "Unknown adapter" in result.stdout
 
@@ -107,7 +111,9 @@ def test_export_command(temp_project):
     (canonical_dir / "rules.md").write_text("# Test Rules")
     (canonical_dir / "manifest.yaml").write_text("version: '1.0'")
 
-    result = runner.invoke(app, ["export", "--to", "cursor", "--path", str(temp_project)])
+    result = runner.invoke(
+        app, ["export", "--to", "cursor", "--path", str(temp_project)]
+    )
     assert result.exit_code == 0
 
     # Check Cursor files were created
@@ -116,7 +122,9 @@ def test_export_command(temp_project):
 
 def test_export_command_no_canonical(temp_project):
     """Test export command without canonical context."""
-    result = runner.invoke(app, ["export", "--to", "cursor", "--path", str(temp_project)])
+    result = runner.invoke(
+        app, ["export", "--to", "cursor", "--path", str(temp_project)]
+    )
     assert result.exit_code == 1
     assert "not found" in result.stdout
 
@@ -142,7 +150,16 @@ def test_convert_command_dry_run(temp_project):
 
     result = runner.invoke(
         app,
-        ["convert", "--from", "cursor", "--to", "vscode", "--path", str(temp_project), "--dry-run"],
+        [
+            "convert",
+            "--from",
+            "cursor",
+            "--to",
+            "vscode",
+            "--path",
+            str(temp_project),
+            "--dry-run",
+        ],
     )
     assert result.exit_code == 0
 
@@ -212,7 +229,9 @@ def test_force_flag(temp_project):
     (canonical_dir / "manifest.yaml").write_text("version: '1.0'")
 
     # Export to cursor
-    runner.invoke(app, ["export", "--to", "cursor", "--path", str(temp_project)])
+    runner.invoke(
+        app, ["export", "--to", "cursor", "--path", str(temp_project)]
+    )
 
     # Modify and re-export with force
     (canonical_dir / "rules.md").write_text("# Modified Rules")

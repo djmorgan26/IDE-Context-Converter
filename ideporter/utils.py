@@ -179,7 +179,9 @@ def ensure_directory(path: Path, dry_run: bool = False) -> None:
     """
     if dry_run:
         if not path.exists():
-            console.print(f"[yellow]DRY RUN:[/yellow] Would create directory {path}")
+            console.print(
+                f"[yellow]DRY RUN:[/yellow] Would create directory {path}"
+            )
         return
 
     path.mkdir(parents=True, exist_ok=True)
