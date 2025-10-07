@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2025-10-07
 
 ### Added
+
 - Initial release of IDE Context Porter
 - Core canonical context management system (`ai/context/` structure)
 - CLI interface with Typer
@@ -39,9 +40,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Comprehensive README with usage examples
   - Contributing guidelines
   - MIT License
-  - Example project demonstrating usage
+  - Example project demo usage
 
 ### Technical Details
+
 - Python 3.11+ required
 - Built with Typer for CLI
 - Uses Rich for beautiful terminal output
