@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Universal CLI tool to import, export, and convert AI project instructions between IDEs"
 readme = "README.md"
 requires-python = ">=3.11"
-license = "MIT"
+license = "MIT"  # Use SPDX license string instead of a table
 authors = [
     { name = "IDE Context Porter Contributors", email = "davidjmorgan26@gmail.com" }
 ]

@@ -79,10 +79,10 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install build tools and package
+      - name: Install build tools
         run: |
           python -m pip install --upgrade pip setuptools wheel build twine
-          pip install -e .   # <--- This fixes the InvalidDistribution metadata issue
+          pip install -e ".[dev]"
 
       - name: Build package
         run: python -m build --sdist --wheel --outdir dist
