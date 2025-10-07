@@ -8,9 +8,9 @@ version = "0.1.0"
 description = "Universal CLI tool to import, export, and convert AI project instructions between IDEs"
 readme = "README.md"
 requires-python = ">=3.11"
-license = {text = "MIT"}
+license = { text = "MIT" }
 authors = [
-    {name = "IDE Context Porter Contributors"}
+    { name = "IDE Context Porter Contributors", email = "davidjmorgan26@gmail.com" }
 ]
 keywords = ["ide", "ai", "context", "cursor", "vscode", "claude", "windsurf", "continue"]
 classifiers = [
