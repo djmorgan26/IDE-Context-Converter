@@ -13,13 +13,12 @@ authors = [
     { name = "IDE Context Porter Contributors", email = "davidjmorgan26@gmail.com" }
 ]
 keywords = ["ide", "ai", "context", "cursor", "vscode", "claude", "windsurf", "continue"]
-classifiers=[
+classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
 dependencies = [
