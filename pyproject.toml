@@ -50,7 +50,7 @@ Repository = "https://github.com/djmorgan26/IDE-Context-Converter"
 Issues = "https://github.com/djmorgan26/IDE-Context-Converter/issues"
 
 [tool.setuptools.packages.find]
-where = ["."]
+where = ["ideporter"]
 include = ["ideporter*"]
 
 [tool.black]
